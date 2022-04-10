@@ -1,0 +1,15 @@
+{
+    "jsonpaths": [
+        "$['borough_name']",
+        "$['complaint_id']",
+        "$['complain_end_date']",
+        "$['housing_development_name']",
+        "$['offense_severity']",
+        "$['crime_location_in_building']",
+        "$['crime_description']",
+        "$['location_type']",
+        "$['start_date']",
+        "$['time_to_resolution']"
+    ]
+}
+

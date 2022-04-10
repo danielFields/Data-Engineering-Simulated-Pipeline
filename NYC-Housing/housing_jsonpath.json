@@ -1,0 +1,26 @@
+{
+    "jsonpaths": [
+        "$['commercial_units']",
+        "$['gross_square_feet']",
+        "$['residential_units']",
+        "$['sale_price']",
+        "$['borough']",
+        "$['total_units']",
+        "$['block']",
+        "$['zip_code']",
+        "$['sale_date']",
+        "$['neighborhood']",
+        "$['land_square_feet']",
+        "$['ease-ment']",
+        "$['lot']",
+        "$['borough_name']",
+        "$['year_built']",
+        "$['tax_class_at_time_of_sale']",
+        "$['apartment_number']",
+        "$['address']",
+        "$['building_class_at_time_of_sale']",
+        "$['building_class_code']",
+        "$['building_class_type']",
+        "$['building_class_details']"
+    ]
+}
