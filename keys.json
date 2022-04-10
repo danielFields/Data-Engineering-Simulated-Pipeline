@@ -27,7 +27,7 @@
         "DWH_DB": "**********",
         "DWH_DB_USER": "**********",
         "DWH_DB_PASSWORD": "**********",
-        "DWH_PORT": **********
+        "DWH_PORT": "**********"
     },
     "Redshift": {
         "RoleARN": "**********",
