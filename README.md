@@ -87,7 +87,7 @@ Once the data is in S3, then the scripts in `Redshift ETL` sets up a data wareho
  
 The script `Redshift ETL\provision_redshift.py` creates a redshift cluster. Then, `Redshift ETL\data_to_redshift.py` will allocate JSON data from S3 to Redshift sequentially.
  
-First, staging tables for crime data,`STAGING_NYC_CRIME`, and property sales data, ,`STAGING_NYC_PROPERTY_SALES` are created and the raw JSON data from S3 is copied in.
+First, staging tables for crime data,`STAGING_NYC_CRIME`, and property sales data, ,`STAGING_NYC_PROPERTY_SALES` are created and the raw JSON data from S3 is copied in using the `COPY INTO` command and a custom jsonpath file (uploaded to S3 as well). Both the Crimes Data and Property Data have their jsonpath files stored in their directories in this repo for demonstration.
  
 Then, the raw crimes data is `STAGING_NYC_CRIME` is used to make the `CRIMES` table which creates a few indicator columns, trims whitespace on character columns, and creates the _primary key_ used in the table, `HOUSING_NAME_KEY`, which is the neighborhood name in all capitals.
  
