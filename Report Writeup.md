@@ -39,7 +39,7 @@ It was chosen to use Redshift for this project due to the fact that there is not
 
 **5. How the project would be different if:**
  - If the data was increased by 100x:
-    - If the data was increased by 100x, in the preprocessing steps it would make sense to use many more smaller files rather than a few large files. Additionally, if the data increased by 100x it would make sense to change the SQL that creates the CRIMES and PROPERTY tables to filter only for valid rows. In the crime data, it would make sense to only look at misdemeanors and felonies. In the housing data, it would make sense to filter based on how recent a property was sold to ensure the values reflect the current market.
+    - If the data was increased by 100x, then at this stage it would become more sensible to use a big data compute solution like an Amazon EMR Spark cluster and use the HDFS file system instead of S3 and JSON to move from the internet to Redshift. In this scenario, the preprocessing steps done in pandas-python would instead need to change to be done in pyspark. Then instead of offloading the proccessed downloaded data into JSON's on the machine, they would be instead saved to partitioned Parquet files to be put into Redshift. 
 
  - If the pipelines were run on a daily basis by 7am:
     - The steps of this process could be put into an Airflow DAG and scheduled to run.
