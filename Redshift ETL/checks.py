@@ -52,7 +52,7 @@ def check_data(cur, table):
             raise ValueError("No Data in Table")
         else:
             nrow = format_rows(nrow)
-            message = f"{table} EXISTS. {nrow} rows in Table"
+            message = f"TABLE {table} EXISTS. {nrow} rows in Table"
             print(message)
 
     except:
