@@ -32,6 +32,17 @@ It was chosen to use Redshift for this project due to the fact that there is not
 
 - Run ELT process from S3 to Redshift.
 
+After the ETL Script `Redshift ETL\data_to_redshift.py` has run, the final step is to run the `Redshift ETL\checks.py` scipt that will check that the ETL process worked correctly. The `checks.py` script will connect to the database cluster and for each table in the database that should be there ("STAGING_NYC_PROPERTY_SALES","STAGING_NYC_CRIME", "CRIMES","PROPERTY","NYC_PROPERTY_AND_CRIME") exist and have data in them.
+
+After running the script the result at the command line was:
+
+`Connected.`    
+`TABLE STAGING_NYC_PROPERTY_SALES EXISTS. 262.25K Rows rows in Table`     
+`TABLE STAGING_NYC_CRIME EXISTS. 1.39M Rows rows in Table`    
+`TABLE CRIMES EXISTS. 1.39M Rows rows in Table`   
+`TABLE PROPERTY EXISTS. 262.25K Rows rows in Table`   
+`TABLE NYC_PROPERTY_AND_CRIME EXISTS. 28.22K Rows rows in Table`  
+
 **4. Propose how often the data should be updated and why.**
 
 - The data should be updated once a month or even annually. The reason this data should be updated too often is because crime statistics are often biased by societal trends and news laws that can lead to rapid escalations of crime statistics. Similarly, the housing market can be rather volatile at times. Since, the end result of the data being the combined property values and crime statistics table, it makes sense to update those values rather infrequently as a way to ensure statistical consistency. 
