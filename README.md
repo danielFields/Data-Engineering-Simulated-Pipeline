@@ -13,20 +13,6 @@ The crime data consists of records of police criminal complaints with each row b
  
 In the scope of this project, only the years 2017,2018, and 2019 were used resulting in a dataset of 1,394,764 Rows.
  
-The fields used from the crime data are:
-|Column Name      |Description                                                                                               |Type       |
-|-----------------|----------------------------------------------------------------------------------------------------------|-----------|
-|CMPLNT_NUM       |Randomly generated persistent ID for each complaint                                                       |Number     |
-|CMPLNT_FR_DT     |Exact date of occurrence for the reported event (or starting date of occurrence, if CMPLNT_TO_DT exists)  |Date & Time|
-|CMPLNT_TO_DT     |Ending date of occurrence for the reported event, if exact time of occurrence is unknown                  |Date & Time|
-|RPT_DT           |Date event was reported to police                                                                         |Date & Time|
-|PD_DESC          |Description of internal classification corresponding with PD code (more granular than Offense Description)|Plain Text |
-|LAW_CAT_CD       |Level of offense: felony, misdemeanor, violation                                                          |Plain Text |
-|BORO_NM          |The name of the borough in which the incident occurred                                                    |Plain Text |
-|LOC_OF_OCCUR_DESC|Specific location of occurrence in or around the premises; inside, opposite of, front of, rear of         |Plain Text |
-|PREM_TYP_DESC    |Specific description of premises; grocery store, residence, street, etc.                                  |Plain Text |
-|HADEVELOPT       |Name of NYCHA housing development of occurrence, if applicable                                            |Plain Text |
- 
 ### NYC Property Sales Data
 The NYC Property Sales data was gathered from the AWS Data Marketplace. This data is provided for free by the [NYC Department of Finance](https://www1.nyc.gov/site/finance/taxes/property-annualized-sales-update.page). The data ranges in time from 2014-2018, and the years of 2016-2018 were used in this project.
  
@@ -96,3 +82,30 @@ Similarly, the raw property sales data is `STAGING_NYC_PROPERTY_SALES` is used t
 Finally, the data from `CRIMES` and `PROPERTY` are joined on `housing_key_name` and combined into the table `NYC_PROPERTY_AND_CRIME`. The table `NYC_PROPERTY_AND_CRIME` is meant to be used as an analytics table for neighborhood-wide crime and property value statistics. This table could be used on a website like Zillow for "neighborhood safety".
  
 Additionally, `CRIMES` and `PROPERTY` tables could be combined with other data like weather data or economic data.
+
+
+
+## Process Checks
+After the ETL Script `Redshift ETL\data_to_redshift.py` has run, the final step is to run the `Redshift ETL\checks.py` scipt that will check that the ETL process worked correctly. The `checks.py` script will connect to the database cluster and for each table in the database that should be there ("STAGING_NYC_PROPERTY_SALES","STAGING_NYC_CRIME", "CRIMES","PROPERTY","NYC_PROPERTY_AND_CRIME") exist and have data in them.
+
+
+# Data Dictionary
+![Raw Property Sales Data (Stage Data) data dictionary.](/Data-Dictionary/STAGING_NYC_PROPERTY_SALES.PNG)
+![Cleaned Property Sales Data with new fields added data dictionary.](/Data-Dictionary/PROPERTY.PNG)
+
+
+![Raw Crimes Data (Stage Data) data dictionary.](/Data-Dictionary/STAGING_NYC_CRIME.PNG)
+![Cleaned Crimes Data with new fields added data dictionary.](/Data-Dictionary/CRIMES.PNG)
+
+
+Then, **CRIMES** and **PROPERTY** join together via `HOUSING_NAME_KEY` and are aggregated into.
+
+![Aggregated Analysis Table with Property values and crime statistics data dictionary.](/Data-Dictionary/NYC_PROPERTY_AND_CRIME.PNG)
+
+
+
+
+
+
+
+
