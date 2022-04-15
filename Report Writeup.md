@@ -45,7 +45,7 @@ After running the script the result at the command line was:
 
 **4. Propose how often the data should be updated and why.**
 
-- The data should be updated once a month or even annually. The reason this data should be updated too often is because crime statistics are often biased by societal trends and news laws that can lead to rapid escalations of crime statistics. Similarly, the housing market can be rather volatile at times. Since, the end result of the data being the combined property values and crime statistics table, it makes sense to update those values rather infrequently as a way to ensure statistical consistency. 
+- The data should be updated once a month or even annually. The reason this data should not be updated too often is because crime statistics are often biased by societal trends and news laws that can lead to rapid escalations of crime statistics. Similarly, the housing market can be rather volatile at times. Since, the end result of the data being the combined property values and crime statistics table, it makes sense to update those values rather infrequently as a way to ensure statistical consistency. 
 
 
 **5. How the project would be different if:**
