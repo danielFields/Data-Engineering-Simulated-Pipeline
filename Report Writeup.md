@@ -8,7 +8,37 @@ Lastly, the data from CRIMES and PROPERTY are joined on housing_key_name and com
 
 This data model was chosen due to the fact that exploratory data analysis showed there were not enough rows or fields to join the crimes data to the property data into a meaningful Star schema model. 
 
-
+The analytical table is meant to join the CRIMES and PROPERTY table. In the implementation here, the query used to create the analytical table using the data model defined above is:
+```
+SELECT 
+PROPERTY.BOROUGH_NAME,
+HOUSING_DEVELOPMENT_NAME, 
+ZIPCODE,
+NEIGHBORHOOD_NAME,
+LOCATION_TYPE,
+PROPERTY_CLASS,
+CRIME_TYPE,
+SUM(NUM_COMMERCIAL_PROPERTIES) AS COUNT_BUSINESS_UNITS,
+SUM(NUM_RESIDENTIAL_PROPERTIES) AS COUNT_HOUSING_UNITS,
+AVG(CIVIL_VIOLATION_IND) AS PERCENT_CIVIL_VIOLATIONS,
+AVG(MISDEMEANOR_IND) AS PERCENT_MISDEMEANORS,
+AVG(FELONY_IND) AS PERCENT_FELONIES,
+AVG(IS_SOLVED) AS CRIME_RESOLUTION_RATE,
+AVG(SALE_PRICE) AS AVERAGE_HOUSING_COST,
+SUM(GROSS_SQUARE_FEET) AS LAND_AREA,
+AVG(YEARS_SINCE_BUILT) AS AVERAGE_NEIGHBORHOOD_AGE
+FROM CRIMES
+JOIN PROPERTY
+ON CRIMES.HOUSING_NAME_KEY = PROPERTY.HOUSING_NAME_KEY
+GROUP BY 
+PROPERTY.BOROUGH_NAME,
+HOUSING_DEVELOPMENT_NAME, 
+ZIPCODE,
+NEIGHBORHOOD_NAME,
+LOCATION_TYPE,
+PROPERTY_CLASS,
+CRIME_TYPE;
+```
 Spark could be incorporated for two use cases. First, spark could be used if we wanted to do a spatial join between the two tables using city block-size geofences to join property sales to crime data more accurately and with more cardinality.
 
 Airflow could be used to automate the whole process. In testing, I have been using a batch script to run all the steps in order and Airflow could be used instead if there was a desire to repeat the process often.
